@@ -1,62 +1,13 @@
-/*
- * Foxfire logo override for Jellyfin / Netflin.
- * Load this AFTER the original netflin-logo.min.css.
- *
- * If you want a standalone replacement instead, use this file in place of
- * the original logo CSS and remove the original import.
- */
-
-/* Hide the existing logo/text where Jellyfin renders the header brand. */
-.headerLogo img,
-.headerLogo-withBackground img,
-.logoImage,
-.headerLogo svg {
-  display: none !important;
+/*! Netflin add-on: FOXFIRE logo (load after Netflin.css) */
+:root {
+  --nf-wordmark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 320'%3E%3Ctext x='0' y='250' font-family='Arial Black, Impact, sans-serif' font-size='280' font-weight='900' letter-spacing='-8' fill='%23e50914'%3EFOXFIRE%3C/text%3E%3C/svg%3E");
+  --nf-wordmark-ratio: 3.75;
 }
 
-/* Render FOXFIRE as the header wordmark. */
-.headerLogo::after,
-.headerLogo-withBackground::after {
-  content: "FOXFIRE" !important;
-  display: inline-block !important;
-  color: #e50914 !important;
-  font-family: Arial, Helvetica, sans-serif !important;
-  font-size: 1.65rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.08em !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
-}
-
-/* Fallback for Jellyfin layouts that use the page title as the logo. */
-:not(.osdHeader) .pageTitle::before,
-:not(.osdHeader) .pageTitleWithDefaultLogo::before,
-:not(.osdHeader) .pageTitleWithLogo::before {
-  content: "FOXFIRE" !important;
-  display: inline-block !important;
-  color: #e50914 !important;
-  font-family: Arial, Helvetica, sans-serif !important;
-  font-size: 1.65rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.08em !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
-}
-
-/* Hide original title text beside the replacement wordmark. */
-:not(.osdHeader) .pageTitle > *,
-:not(.osdHeader) .pageTitleWithDefaultLogo > *,
-:not(.osdHeader) .pageTitleWithLogo > * {
-  display: none !important;
-}
-
-/* Keep playback's on-screen display title untouched. */
-.osdHeader .pageTitle::before,
-.osdHeader .pageTitle::after,
-.osdHeader .pageTitleWithDefaultLogo::before,
-.osdHeader .pageTitleWithDefaultLogo::after,
-.osdHeader .pageTitleWithLogo::before,
-.osdHeader .pageTitleWithLogo::after {
-  content: none !important;
-  display: none !important;
+.MuiAppBar-root :is(.MuiStack-root, .dashboard-appBar) > .MuiButton-root:has(.MuiButton-startIcon > img)::before,
+.MuiDrawer-paper > .MuiBox-root > .MuiList-root:first-child > li:first-child > a::before {
+  content: "";
+  height: 1.59rem;
+  aspect-ratio: var(--nf-wordmark-ratio);
+  background: var(--nf-wordmark) center / contain no-repeat;
 }
